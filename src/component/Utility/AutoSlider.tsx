@@ -4,10 +4,13 @@ import Carousel from 'react-native-reanimated-carousel';
 
 function AutoSlider({items, widthBy, Tile, elevation}) {
   const width = Dimensions.get('window').width;
-
   return (
     <View style={{elevation: elevation}}>
       <Carousel
+        // this line allow you to scroll the page down 
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
         loop
         width={width}
         height={width / widthBy}

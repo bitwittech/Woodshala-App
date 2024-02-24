@@ -10,6 +10,9 @@ let styleHarder = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  headerTitle :{
+    fontSize : 21,
+   },
   headerImg: {
     width: 180,
   },

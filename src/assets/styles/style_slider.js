@@ -20,6 +20,7 @@ let styleSlider = StyleSheet.create({
     fontSize : 24,
   },
   slider: {
+    marginTop : 3,
     flex: 1,
     width : '100%',
     padding: 15,

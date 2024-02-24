@@ -1,13 +1,22 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styleHome from '../../assets/styles/style_home';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
-import {Button, IconButton} from 'react-native-paper';
+import {ScrollView} from 'react-native-gesture-handler';
+import {IconButton} from 'react-native-paper';
 import AutoSlider from '../Utility/AutoSlider';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 // image
 import bannerSec2 from '../../assets/image/Home/sec2banner.jpg';
 import sec3Img1 from '../../assets/image/Home/sec3img.webp';
+import b1 from '../../assets/image/Home/banner1.webp';
+import b2 from '../../assets/image/Home/banner2.webp';
+import p1 from '../../assets/image/Home/partner.png';
+import p2 from '../../assets/image/Home/partner2.png';
+import p3 from '../../assets/image/Home/partner3.png';
+import p4 from '../../assets/image/Home/partner4.png';
+import p5 from '../../assets/image/Home/partner5.png';
+import p6 from '../../assets/image/Home/partner6.png';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Slider from '../Utility/Slider';
 const Home = () => {
@@ -23,7 +32,7 @@ const Home = () => {
         </View>
         <IconButton icon={'microphone'} />
       </TouchableOpacity>
-      <ScrollView style = {{height : '100%'}}>
+      <ScrollView style={{height: 'auto', marginBottom: 100}}>
         {/* // offer label */}
         <AutoSlider items={offer} widthBy={9} Tile={OfferTile} />
         {/* Sec 2 banner */}
@@ -48,10 +57,16 @@ const Home = () => {
         <AutoSlider items={offer} widthBy={9} Tile={OfferTile} />
         {/* Shop By CateGory */}
         <Slider heading={'Shop By Category'} data={SOC} Tile={SOC_Tile} />
+        {/* Shop By Cabinet */}
+        <Slider heading={'Cabinet'} data={Cabinet} Tile={Cabinet_Tile} />
+        {/* Shop By Cabinet */}
+        <Slider heading={'Dining Set'} data={Cabinet} Tile={Cabinet_Tile} />
+        {/* Video  */}
+        <YoutubePlayer height={230} play={true} videoId={'OF2x1fx2rDE'} />
+        {/* banners  */}
+        <AutoSlider items={Banner} widthBy={2.5} Tile={Banner_Tile} />
         {/* Shop By CateGory */}
-        <Slider heading={'Dining Set'} data={SOC} Tile={SOC_Tile} />
-        {/* Shop By CateGory */}
-        <Slider heading={'Featured In'} data={SOC} Tile={SOC_Tile} />
+        <Slider heading={'Featured In'} data={Featured} Tile={FT_Tile} />
       </ScrollView>
     </View>
   );
@@ -87,6 +102,36 @@ export function SOC_Tile({data}) {
     </View>
   );
 }
+export function FT_Tile({data}) {
+  let {id, title, img} = data;
+  return (
+    <View style={styleHome.FT_Tile} key={id}>
+      <Image style={styleHome.FT_Img} source={img} />
+    </View>
+  );
+}
+export function Cabinet_Tile({data}) {
+  let {id, title, img, price} = data;
+  const formatter = new Intl.NumberFormat('en-IN', {
+    maximumSignificantDigits: 3,
+  });
+
+  return (
+    <View style={styleHome.Cabinet_Tile} key={id}>
+      <Image style={styleHome.Cabinet_Img} source={img} />
+      <Text style={styleHome.Cabinet_Text}>{title}</Text>
+      <Text style={styleHome.Cabinet_Price}>₹{formatter.format(price)}</Text>
+    </View>
+  );
+}
+export function Banner_Tile({index}) {
+  let {key, img} = Banner[index];
+  return (
+    <View key={key} style={styleHome.bannerSlide}>
+      <Image style={styleHome.bannerSlide_img} source={img} />
+    </View>
+  );
+}
 
 // List Array ============
 
@@ -110,7 +155,16 @@ let insight = [
     title: 'Safe Delivery Promise',
   },
 ];
-
+let Banner = [
+  {
+    key: 'b1',
+    img: b1,
+  },
+  {
+    key: 'b2',
+    img: b2,
+  },
+];
 let SOC = [
   {id: 'o1', img: sec3Img1, title: 'Bedroom'},
   {id: 'o2', img: sec3Img1, title: 'Dining'},
@@ -119,6 +173,23 @@ let SOC = [
   {id: 'o5', img: sec3Img1, title: 'Dining'},
   {id: 'o6', img: sec3Img1, title: 'Dining'},
   {id: 'o7', img: sec3Img1, title: 'Dining'},
+];
+
+let Cabinet = [
+  {id: 'o1', price: 40000, img: sec3Img1, title: 'Bedroom'},
+  {id: 'o2', price: 40000, img: sec3Img1, title: 'Dining'},
+  {id: 'o3', price: 40000, img: sec3Img1, title: 'Dining'},
+  {id: 'o4', price: 40000, img: sec3Img1, title: 'Bedroom'},
+  {id: 'o5', price: 40000, img: sec3Img1, title: 'Dining'},
+];
+
+let Featured = [
+  {id: 'o1', img: p1},
+  {id: 'o2', img: p2},
+  {id: 'o3', img: p3},
+  {id: 'o4', img: p4},
+  {id: 'o5', img: p5},
+  {id: 'o6', img: p6},
 ];
 
 export default Home;
