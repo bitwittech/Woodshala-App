@@ -11,7 +11,6 @@ import Register from './src/component/User/Register';
 import Listing from './src/component/Product/Listing';
 import {useSelector} from 'react-redux';
 const Stack = createStackNavigator();
-
 export const theme = {
   ...DefaultTheme,
   colors: {

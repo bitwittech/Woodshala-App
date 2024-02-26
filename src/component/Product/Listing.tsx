@@ -12,19 +12,19 @@ const Listing = () => {
         style={{height: '100%'}}
         contentContainerStyle={styleList.container}>
         {products.map((row, i) => (
-          <ProductCard index={i} item={row} />
+          <ProductCard key={i} item={row} />
         ))}
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-function ProductCard({item, index}) {
+function ProductCard({item}) {
   const formatter = new Intl.NumberFormat('en-IN', {
     maximumSignificantDigits: 3,
   });
   return (
-    <View style={styleList.card} key={index}>
+    <View style={styleList.card}>
       <Image style={styleList.img} source={item.img} />
       <Text style={styleList.title} numberOfLines={2} variant="bodyLarge">
         {item.title}{' '}

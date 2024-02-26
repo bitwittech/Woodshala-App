@@ -9,6 +9,7 @@ import logo from '../../assets/image/Home/logo_spell.png';
 import BottomNav from './BottomNav';
 import {useSelector} from 'react-redux';
 import {Drawer as Slid} from 'react-native-paper';
+import DrawerCustom from './DrawerCustom';
 const DrawerNav = createDrawerNavigator();
 
 export default function Drawer() {
@@ -31,12 +32,7 @@ export default function Drawer() {
   };
   return (
     <DrawerNav.Navigator
-      drawerContent={() => (
-        <Slid.Section>
-          <Slid.Item label="First Item" />
-          <Slid.Item label="Second Item" />
-        </Slid.Section>
-      )}
+      drawerContent={props => <DrawerCustom {...props} />}
       initialRouteName="Bottom">
       <DrawerNav.Screen
         options={headerHome}

@@ -163,4 +163,6 @@ let ListObj = [
   },
 ];
 
+export {ListComp, ListObj};
+
 export default Collection;
