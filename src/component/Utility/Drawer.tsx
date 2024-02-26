@@ -8,7 +8,7 @@ import styleHarder from '../../assets/styles/style_header';
 import logo from '../../assets/image/Home/logo_spell.png';
 import BottomNav from './BottomNav';
 import {useSelector} from 'react-redux';
-
+import {Drawer as Slid} from 'react-native-paper';
 const DrawerNav = createDrawerNavigator();
 
 export default function Drawer() {
@@ -30,7 +30,14 @@ export default function Drawer() {
     ),
   };
   return (
-    <DrawerNav.Navigator initialRouteName="Bottom">
+    <DrawerNav.Navigator
+      drawerContent={() => (
+        <Slid.Section>
+          <Slid.Item label="First Item" />
+          <Slid.Item label="Second Item" />
+        </Slid.Section>
+      )}
+      initialRouteName="Bottom">
       <DrawerNav.Screen
         options={headerHome}
         name="Bottom"
@@ -41,7 +48,7 @@ export default function Drawer() {
 }
 
 function HeaderLeft({handleDrawer}) {
-  const {name} = useSelector(state => state.generalSlice);
+  const {route_name} = useSelector(state => state.generalSlice);
 
   const color = '#682d2d';
   return (
@@ -54,12 +61,12 @@ function HeaderLeft({handleDrawer}) {
           onPress={() => handleDrawer()}
         />
       </View>
-      {['Main', 'Home'].includes(name) ? (
+      {['Main', 'Home'].includes(route_name) ? (
         <View style={styleHarder.headerImg}>
           <Image style={styleHarder.img} source={logo} />
         </View>
       ) : (
-        <Text style={styleHarder.headerTitle}>{name}</Text>
+        <Text style={styleHarder.headerTitle}>{route_name}</Text>
       )}
       <View style={styleHarder.mic}>
         <IconButton

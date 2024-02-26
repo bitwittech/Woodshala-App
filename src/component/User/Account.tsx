@@ -1,12 +1,20 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import Login from './Login';
+const Stack = createStackNavigator();
 
-const Account = () => {
+export default function Account() {
   return (
-    <View>
-      <Text>Account</Text>
-    </View>
-  )
+    <SafeAreaView style={{flex: 1}}>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Login"
+          component={Login}
+        />
+      </Stack.Navigator>
+    </SafeAreaView>
+  );
 }
-
-export default Account

@@ -1,17 +1,21 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  name: 'Main',
+  route_name: 'Main',
+  catagories: 'All product',
 };
 export const general = createSlice({
   name: 'general',
   initialState,
   reducers: {
     setRoute: (state, action) => {
-      state.name = action.payload.name;
+      state.route_name = action.payload.route_name;
+    },
+    setCatagories: (state, action) => {
+      state.catagories = action.payload.catagories;
     },
   },
 });
 
-export const {setRoute} = general.actions;
+export const {setRoute, setCatagories} = general.actions;
 export default general.reducer;

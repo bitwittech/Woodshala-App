@@ -12,11 +12,13 @@ import {theme} from '../../../App';
 import Notification from '../Notification/Notification';
 import Account from '../User/Account';
 import Blog from '../Blog/Blog';
+import { useSelector } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  let {route_name} = useSelector(state => state.generalSlice);
   const screens = [
     {name: 'Home', component: Home},
     {name: 'Collections', component: Collection},
@@ -59,11 +61,10 @@ const BottomNav = () => {
       <TouchableOpacity>
         <IconButton
           onPress={() => {
-            dispatch(setRoute({name}));
+            dispatch(setRoute({route_name: name}));
             navigation.navigate(name);
           }}
-          style={{
-          }}
+          style={{}}
           iconColor={theme.colors.primary}
           icon={focused ? icons[name][0] : icons[name][1]}
           size={focused ? 33 : 25}
@@ -104,10 +105,10 @@ const BottomNav = () => {
         ),
         ...screenOptions,
       })}
-      initialRouteName="Home">
+      initialRouteName={route_name}>
       {screens.map((row, index) => (
         <Tab.Screen
-          key={'s'+index}
+          key={'s' + index}
           name={row.name}
           options={{
             ...tabButton,

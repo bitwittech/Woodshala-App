@@ -7,6 +7,8 @@ import {StatusBar, LogBox} from 'react-native';
 import Drawer from './src/component/Utility/Drawer';
 import 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Register from './src/component/User/Register';
+import Listing from './src/component/Product/Listing';
 import {useSelector} from 'react-redux';
 const Stack = createStackNavigator();
 
@@ -19,8 +21,16 @@ export const theme = {
   },
 };
 
+export const color = {
+  primary: '#682d2d',
+  secondary: '#FEF5E7',
+};
+
 export default function App() {
   LogBox.ignoreAllLogs();
+  let {catagories} = useSelector(
+    (state: {generalSlice: any}) => state.generalSlice,
+  );
 
   return (
     <PaperProvider theme={theme}>
@@ -31,7 +41,13 @@ export default function App() {
           backgroundColor="#FEF5E7"
         />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Splash">
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: theme.colors.secondary,
+              },
+            }}
+            initialRouteName="Splash">
             <Stack.Screen
               name="Splash"
               component={Splash}
@@ -41,6 +57,14 @@ export default function App() {
               options={{headerShown: false}}
               name="Main"
               component={Drawer}
+            />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen
+              options={{
+                headerTitle: catagories,
+              }}
+              name="Product"
+              component={Listing}
             />
           </Stack.Navigator>
         </NavigationContainer>

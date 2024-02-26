@@ -4,10 +4,13 @@ import {useNavigation} from '@react-navigation/native';
 import styleSplash from '../../assets/styles/style_Splash';
 import logo from '../../assets/image/splash/logo.png';
 import {ActivityIndicator, Button} from 'react-native-paper';
+import { useSelector } from 'react-redux';
 const Splash = () => {
   let navigator = useNavigation();
   useEffect(() => {
-    setTimeout(() => navigator.navigate('Main'), 2000);
+    setTimeout(() => {
+      navigator.navigate('Main');
+    }, 2000);
   }, []);
   return (
     <View style={styleSplash.container}>
