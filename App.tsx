@@ -10,6 +10,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Register from './src/component/User/Register';
 import Listing from './src/component/Product/Listing';
 import {useSelector} from 'react-redux';
+import Cart from './src/component/Cart/Cart';
 const Stack = createStackNavigator();
 export const theme = {
   ...DefaultTheme,
@@ -65,6 +66,7 @@ export default function App() {
               name="Product"
               component={Listing}
             />
+            <Stack.Screen name="Cart" component={Cart} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

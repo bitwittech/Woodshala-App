@@ -45,7 +45,7 @@ export default function Drawer() {
 
 function HeaderLeft({handleDrawer}) {
   const {route_name} = useSelector(state => state.generalSlice);
-
+  const navigation = useNavigation()
   const color = '#682d2d';
   return (
     <View style={styleHarder.container}>
@@ -69,7 +69,7 @@ function HeaderLeft({handleDrawer}) {
           iconColor={color}
           icon="cart"
           size={30}
-          onPress={handleDrawer}
+          onPress={()=>navigation.navigate('Cart')}
         />
       </View>
     </View>
