@@ -6,14 +6,17 @@ import {Button, Icon, IconButton, List} from 'react-native-paper';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {EllipsizeProp} from 'react-native-paper/lib/typescript/types';
 import {useDispatch} from 'react-redux';
-import {setCatagories} from '../../redux/feature/generalSlice';
+import {setCatagories, setModal} from '../../redux/feature/generalSlice';
 import {useNavigation} from '@react-navigation/native';
 
 const Collection = () => {
+  const dispatch = useDispatch();
   return (
     <View style={styleCollection.container}>
       {/* search Bar  */}
-      <TouchableOpacity style={styleHome.searchBar}>
+      <TouchableOpacity
+        style={styleHome.searchBar}
+        onPress={() => dispatch(setModal({open: true, type: 'search'}))}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <IconButton icon={'magnify'} />
           <View>

@@ -3,6 +3,10 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   route_name: 'Main',
   catagories: 'All product',
+  modal: {
+    open: false,
+    type: '',
+  },
 };
 export const general = createSlice({
   name: 'general',
@@ -14,8 +18,11 @@ export const general = createSlice({
     setCatagories: (state, action) => {
       state.catagories = action.payload.catagories;
     },
+    setModal: (state, action) => {
+      state.modal = {...state, ...action.payload};
+    },
   },
 });
 
-export const {setRoute, setCatagories} = general.actions;
+export const {setRoute, setCatagories, setModal} = general.actions;
 export default general.reducer;

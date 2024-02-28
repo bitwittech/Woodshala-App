@@ -2,13 +2,13 @@ import {Dimensions, StyleSheet} from 'react-native';
 import {color} from '../../../App';
 
 const ScreenHeight = Dimensions.get('window').height;
-const ScreenWidth = Dimensions.get('window').width;
 
 const styleLogin = StyleSheet.create({
   container: {
-    gap : 10,
+    height: ScreenHeight,
     padding: 15,
-    marginTop: ScreenHeight / 20,
+    gap: 10,
+    paddingTop: ScreenHeight / 20,
   },
   logo: {
     width: '100%',
@@ -50,8 +50,9 @@ const styleLogin = StyleSheet.create({
   },
   reg_Button: {
     position: 'absolute',
-    bottom: '40%',
+    alignSelf: 'center',
     width: '100%',
+    bottom: '20%',
   },
   root: {flex: 1, padding: 20},
   title: {textAlign: 'center', fontSize: 30},

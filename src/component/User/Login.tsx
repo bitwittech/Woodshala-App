@@ -12,7 +12,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
   const [screen, setScreen] = useState('phone');
@@ -30,25 +30,25 @@ const Login = () => {
         ) : (
           <Verify setScreen={setScreen} />
         )}
-        {/* Register */}
-        {screen !== 'verify' && (
-          <View style={styleLogin.reg_Button}>
-            <Button
-              onPress={()=>navigation.navigate('Register')}
-              mode="outlined"
-              buttonColor="primary"
-              style={styleLogin.button}>
-              <Text style={{...styleLogin.btn_text, color: 'black'}}>
-                Don't have an account?
-              </Text>
-              <Text style={{...styleLogin.btn_text, color: color.primary}}>
-                {' '}
-                REGISTER
-              </Text>
-            </Button>
-          </View>
-        )}
       </View>
+      {/* Register */}
+      {screen !== 'verify' && (
+        <View style={styleLogin.reg_Button}>
+          <Button
+            onPress={() => navigation.navigate('Register')}
+            mode="outlined"
+            buttonColor="primary"
+            style={styleLogin.button}>
+            <Text style={{...styleLogin.btn_text, color: 'black'}}>
+              Don't have an account?
+            </Text>
+            <Text style={{...styleLogin.btn_text, color: color.primary}}>
+              {' '}
+              REGISTER
+            </Text>
+          </Button>
+        </View>
+      )}
     </View>
   );
 };

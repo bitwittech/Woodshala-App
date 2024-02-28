@@ -17,13 +17,18 @@ import p3 from '../../assets/image/Home/partner3.png';
 import p4 from '../../assets/image/Home/partner4.png';
 import p5 from '../../assets/image/Home/partner5.png';
 import p6 from '../../assets/image/Home/partner6.png';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import Slider from '../Utility/Slider';
+import {useDispatch} from 'react-redux';
+import {setModal} from '../../redux/feature/generalSlice';
+import {SafeAreaView} from 'react-native-safe-area-context';
 const Home = () => {
+  const dispatch = useDispatch();
   return (
-    <View style={styleHome.container}>
+    <SafeAreaView style={styleHome.container}>
       {/* // search bar  */}
-      <TouchableOpacity style={styleHome.searchBar}>
+      <TouchableOpacity
+        style={styleHome.searchBar}
+        onPress={() => dispatch(setModal({open: true, type: 'search'}))}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <IconButton icon={'magnify'} />
           <View>
@@ -62,13 +67,18 @@ const Home = () => {
         {/* Shop By Cabinet */}
         <Slider heading={'Dining Set'} data={Cabinet} Tile={Cabinet_Tile} />
         {/* Video  */}
-        <YoutubePlayer height={230} play={true} videoId={'OF2x1fx2rDE'} />
+        <YoutubePlayer
+          mute={true}
+          height={230}
+          play={true}
+          videoId={'OF2x1fx2rDE'}
+        />
         {/* banners  */}
         <AutoSlider items={Banner} widthBy={2.5} Tile={Banner_Tile} />
         {/* Shop By CateGory */}
         <Slider heading={'Featured In'} data={Featured} Tile={FT_Tile} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -51,13 +51,24 @@ const styleCart = StyleSheet.create({
   btn_out: {
     position: 'absolute',
     top: '100%',
-    height : 80,
+    height: 80,
     padding: 12,
     backgroundColor: 'white',
     width: Dimensions.get('window').width,
   },
   btn_text: {
     color: 'white',
+  },
+  btn_text_dark: {
+    color: 'black',
+  },
+  btn: {
+    marginVertical : 10,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    padding: 10,
+    gap: 5,
+    alignItems: 'center',
   },
 });
 

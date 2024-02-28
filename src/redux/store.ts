@@ -11,6 +11,7 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  purgeStoredState,
 } from 'redux-persist';
 
 const persistConfig = {
@@ -21,10 +22,9 @@ const persistConfig = {
 const rootReducers = combineReducers({generalSlice});
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
-
-export const store = configureStore({
+const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -32,4 +32,8 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+function resetStore() {
+  purgeStoredState(persistConfig);
+}
+const persistor = persistStore(store);
+export {store, persistor, resetStore};

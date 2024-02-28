@@ -2,16 +2,26 @@ import {Image, View} from 'react-native';
 import React, {useState} from 'react';
 import styleCart from '../../assets/styles/style_cart';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-import {Button, Divider, IconButton, Menu, Text} from 'react-native-paper';
+import {
+  Button,
+  Divider,
+  Icon,
+  IconButton,
+  Menu,
+  Text,
+  TextInput,
+} from 'react-native-paper';
 // image
 import image from '../../assets/image/other/default.png';
 import {color} from '../../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 
 const formatter = new Intl.NumberFormat('en-IN', {
   maximumSignificantDigits: 3,
 });
 const Cart = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <ScrollView style={styleCart.container}>
@@ -26,12 +36,23 @@ const Cart = () => {
         {/* // cards  */}
         <ProductCard />
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {/* Wishlist  */}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Wishlist')}
+          style={styleCart.btn}>
+          <Icon size={23} color="#fc9003" source={'heart'} />
+          <Text variant="titleMedium" style={styleCart.btn_text_dark}>
+            Add Product from Wishlist
+          </Text>
+        </TouchableOpacity>
+        {/* Note field */}
+        <View>
+          <TextInput
+            style={{height: 40, backgroundColor: 'white', borderWidth: 0}}
+            mode="flat"
+            placeholder="Any Instruction?"
+          />
+        </View>
         {/* // footer */}
         <View
           style={{

@@ -11,6 +11,8 @@ import Register from './src/component/User/Register';
 import Listing from './src/component/Product/Listing';
 import {useSelector} from 'react-redux';
 import Cart from './src/component/Cart/Cart';
+import Wishlist from './src/component/Cart/Wishlist';
+import CusModal from './src/component/Utility/CusModal';
 const Stack = createStackNavigator();
 export const theme = {
   ...DefaultTheme,
@@ -67,8 +69,10 @@ export default function App() {
               component={Listing}
             />
             <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="Wishlist" component={Wishlist} />
           </Stack.Navigator>
         </NavigationContainer>
+        <CusModal />
       </SafeAreaView>
     </PaperProvider>
   );
