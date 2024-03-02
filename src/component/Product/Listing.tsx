@@ -1,10 +1,11 @@
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styleList from '../../assets/styles/style_listing';
 import {Text} from 'react-native-paper';
 import image from '../../assets/image/Home/sec3img.webp';
 import {ScrollView} from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 const Listing = () => {
   return (
     <SafeAreaView>
@@ -20,11 +21,12 @@ const Listing = () => {
 };
 
 function ProductCard({item}) {
+  const navigation = useNavigation();
   const formatter = new Intl.NumberFormat('en-IN', {
     maximumSignificantDigits: 3,
   });
   return (
-    <View style={styleList.card}>
+    <TouchableOpacity onPress={()=>navigation.navigate('Details')} style={styleList.card}>
       <Image style={styleList.img} source={item.img} />
       <Text style={styleList.title} numberOfLines={2} variant="bodyLarge">
         {item.title}{' '}
@@ -32,7 +34,7 @@ function ProductCard({item}) {
       <Text style={styleList.price} variant="titleMedium">
         ₹{formatter.format(item.price)}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
